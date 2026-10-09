@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#100b1c">
+<title>AnimeStream Pro</title>
+<style>
+:root{--bg:#100b1c;--panel:#1b132a;--panel2:#241837;--purple:#a970ff;--pink:#f16bc7;--text:#f8f4ff;--muted:#b9aecb;--line:#39284d}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#25143b 0,#100b1c 45%);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}header{position:sticky;top:0;z-index:5;background:#100b1ceF;backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:14px max(16px,calc((100vw - 1180px)/2));display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}.brand{font-weight:900;font-size:1.1rem;letter-spacing:.2px}.brand span{color:var(--purple)}.search{display:flex;gap:8px;flex:1;max-width:520px}.search input{min-width:0;flex:1;background:#21172f;border:1px solid #47315f;color:white;border-radius:14px;padding:12px 14px;outline:none}.btn{border:0;border-radius:12px;padding:11px 15px;background:linear-gradient(135deg,var(--purple),var(--pink));color:#160d22;font-weight:800;cursor:pointer}.btn.secondary{background:#2b1d3d;color:#f5eaff;border:1px solid #49345f}.wrap{max-width:1180px;margin:auto;padding:22px 16px 60px}.hero{border:1px solid #50336c;border-radius:24px;padding:24px;background:linear-gradient(110deg,#321d4d,#1b132a 65%,#3c1d4b);margin-bottom:24px}.hero h1{margin:0 0 8px;font-size:clamp(1.6rem,4vw,2.6rem)}.hero p{color:#d2c4e5;max-width:720px;margin:0;line-height:1.55}.tabs{display:flex;gap:8px;overflow:auto;padding:4px 0 14px}.tabs button{white-space:nowrap;border:1px solid var(--line);background:var(--panel);color:var(--muted);padding:10px 14px;border-radius:99px;font-weight:700}.tabs button.active{background:#4a2d6a;color:white;border-color:#8b5ec1}.sectionhead{display:flex;align-items:end;justify-content:space-between;gap:12px;margin:18px 0 12px}.sectionhead h2{font-size:1.25rem;margin:0}.sectionhead small{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:14px}.card{background:linear-gradient(180deg,#21172f,#181121);border:1px solid var(--line);border-radius:16px;overflow:hidden;cursor:pointer;transition:transform .15s,border-color .15s}.card:hover{transform:translateY(-3px);border-color:#9c68d2}.poster{width:100%;aspect-ratio:3/4;object-fit:cover;background:#2b1d3d;display:block}.cardbody{padding:10px}.title{font-weight:800;font-size:.92rem;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.meta{font-size:.77rem;color:var(--muted);margin-top:6px}.pill{display:inline-block;font-size:.68rem;padding:4px 7px;border-radius:7px;background:#352248;color:#e4d3ff;margin-top:8px}.pill.good{background:#173d31;color:#a8f3d2}.pill.info{background:#44351c;color:#ffe0a1}.empty,.loading{padding:24px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:16px}.hidden{display:none!important}.detail{display:grid;grid-template-columns:minmax(140px,240px) 1fr;gap:22px;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:18px}.detail img{width:100%;border-radius:14px}.detail h2{margin:0 0 8px}.desc{color:#d1c6df;line-height:1.65}.genres{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0}.genres span{font-size:.8rem;border:1px solid #4c3762;border-radius:99px;padding:5px 9px;color:#ddc8ff}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.notice{margin-top:14px;padding:13px;border-radius:12px;background:#30231c;border:1px solid #59412b;color:#ffe0ae;line-height:1.5}.notice.ok{background:#172d28;border-color:#285647;color:#b5f4d9}footer{padding:25px 16px;text-align:center;color:#8f829f;font-size:.8rem}@media(max-width:560px){header{align-items:stretch}.search{order:2;max-width:none;flex-basis:100%}.detail{grid-template-columns:110px 1fr;padding:12px;gap:13px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.detail .desc{font-size:.9rem}}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">✦ Anime<span>Stream</span> Pro</div>
+  <form class="search" id="searchForm"><input id="searchInput" placeholder="Buscar anime..." autocomplete="off"><button class="btn" type="submit">Buscar</button></form>
+</header>
+<main class="wrap">
+  <section class="hero">
+    <h1>Tu universo anime, en un solo lugar ✨</h1>
+    <p>Descubre tendencias, encuentra tu próximo anime y consulta fichas con sinopsis, géneros, temporadas y estado de emisión.</p>
+  </section>
+  <nav class="tabs">
+    <button class="active" data-view="home">Inicio</button>
+    <button data-view="available">Fuentes conectadas</button>
+    <button data-view="explore">Explorar catálogo</button>
+    <button data-view="favorites">Mi lista ♥</button>
+  </nav>
+  <section id="detailSection" class="hidden"></section>
+  <section id="homeView">
+    <div class="sectionhead"><h2>🔥 Tendencias</h2><small>Popular ahora</small></div><div id="trending" class="grid"><div class="loading">Cargando catálogo…</div></div>
+    <div class="sectionhead"><h2>🌸 En emisión</h2><small>Series que siguen emitiéndose</small></div><div id="recent" class="grid"><div class="loading">Cargando…</div></div>
+  </section>
+  <section id="resultsView" class="hidden"><div class="sectionhead"><h2 id="resultsTitle">Explorar catálogo</h2><small id="resultsCount"></small></div><div id="results" class="grid"></div></section>
+</main>
+<footer>AnimeStream Pro · Catálogo informativo proporcionado por AniList. La disponibilidad de episodios depende de las fuentes conectadas.</footer>
+<script>
+const $ = s => document.querySelector(s);
+const favKey = "asp-favorites-v1";
+let favorites = JSON.parse(localStorage.getItem(favKey) || "[]");
+let lastResults = [];
+function titleOf(a){return a?.title?.english || a?.title?.romaji || a?.title?.native || "Anime sin título"}
+function escapeHTML(s=""){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function plain(s=""){return String(s).replace(/<br\s*\/?>/gi,"\n").replace(/<[^>]*>/g,"").replace(/&nbsp;/g," ").replace(/&amp;/g,"&").replace(/&#039;/g,"'")}
+function card(a, sourceStatus="info"){
+ const cover=a.coverImage?.large||a.coverImage?.extraLarge||"";
+ const status=sourceStatus==="available"?'<span class="pill good">Fuente conectada</span>':'<span class="pill info">Solo información</span>';
+ return `<article class="card" data-id="${a.id}"><img class="poster" src="${escapeHTML(cover)}" alt="" loading="lazy" onerror="this.style.visibility='hidden'"><div class="cardbody"><div class="title">${escapeHTML(titleOf(a))}</div><div class="meta">${escapeHTML(a.seasonYear||"Año desconocido")} · ${escapeHTML(a.format||"Anime")}</div>${status}</div></article>`;
+}
+function renderCards(target,items,status="info"){
+ const el=$(target); if(!items?.length){el.innerHTML='<div class="empty">No se encontraron animes.</div>';return}
+ el.innerHTML=items.map(a=>card(a,status)).join("");
+ el.querySelectorAll(".card").forEach(c=>c.addEventListener("click",()=>openDetail(c.dataset.id)));
+}
+async function api(path){const r=await fetch(path);const d=await r.json();if(!r.ok)throw new Error(d.error||"Error de conexión");return d}
+async function init(){
+ try{const d=await api("/api/trending");renderCards("#trending",d.results)}
+ catch(e){$("#trending").innerHTML=`<div class="empty">${escapeHTML(e.message)}</div>`}
+ try{const d=await api("/api/recent");renderCards("#recent",d.results)}
+ catch(e){$("#recent").innerHTML=`<div class="empty">${escapeHTML(e.message)}</div>`}
+}
+function setView(name){
+ $("#homeView").classList.toggle("hidden",name!=="home");
+ $("#resultsView").classList.toggle("hidden",name==="home");
+ $("#detailSection").classList.add("hidden");
+ document.querySelectorAll(".tabs button").forEach(b=>b.classList.toggle("active",b.dataset.view===name));
+ if(name==="available") loadProviderInfo();
+ if(name==="explore") loadExplore();
+ if(name==="favorites") showFavorites();
+}
+async function loadExplore(){
+ $("#resultsTitle").textContent="Explorar catálogo";$("#resultsCount").textContent="AniList";
+ $("#results").innerHTML='<div class="loading">Usa el buscador para encontrar un anime.</div>';
+}
+async function loadProviderInfo(){
+ $("#resultsTitle").textContent="Fuentes conectadas";
+ $("#resultsCount").textContent="Disponibilidad real solo con proveedor configurado";
+ try{
+   const d=await api("/api/provider/search?q=one%20piece");
+   if(!d.configured){$("#results").innerHTML='<div class="empty">Aún no hay una API de episodios configurada. Los títulos del catálogo se mostrarán como <b>Solo información</b> hasta conectar un proveedor autorizado.</div>';return}
+   const items=d.results||[];
+   $("#results").innerHTML=items.length?items.map(x=>`<article class="card"><div class="cardbody"><div class="title">${escapeHTML(x.title||"Título")}</div>${x.url?`<a class="btn secondary" href="${escapeHTML(x.url)}" target="_blank" rel="noopener">Abrir fuente</a>`:""}</div></article>`).join(""):'<div class="empty">El proveedor respondió, pero no devolvió resultados de prueba.</div>';
+ }catch(e){$("#results").innerHTML=`<div class="empty">${escapeHTML(e.message)}</div>`}
+}
+async function showFavorites(){
+ $("#resultsTitle").textContent="Mi lista ♥";$("#resultsCount").textContent=`${favorites.length} guardados`;
+ if(!favorites.length){$("#results").innerHTML='<div class="empty">Todavía no guardaste ningún anime. Abre una ficha y pulsa “Añadir a mi lista”.</div>';return}
+ try{const all=await Promise.all(favorites.map(id=>api(`/api/anime/${id}`).catch(()=>null)));renderCards("#results",all.filter(Boolean))}
+ catch(e){$("#results").innerHTML='<div class="empty">No se pudo cargar tu lista.</div>'}
+}
+async function openDetail(id){
+ $("#homeView").classList.add("hidden");$("#resultsView").classList.add("hidden");$("#detailSection").classList.remove("hidden");
+ $("#detailSection").innerHTML='<div class="loading">Cargando ficha…</div>';
+ try{
+  const a=await api(`/api/anime/${id}`);
+  const fav=favorites.includes(a.id);
+  const rel=(a.relations?.edges||[]).filter(x=>x.node?.type==="ANIME").slice(0,8);
+  $("#detailSection").innerHTML=`<div class="detail">
+   <img src="${escapeHTML(a.coverImage?.extraLarge||a.coverImage?.large||"")}" alt="">
+   <div><button class="btn secondary" id="backBtn">← Volver</button>
+   <h2>${escapeHTML(titleOf(a))}</h2>
+   <div class="meta">${escapeHTML(a.title?.native||"")} · ${escapeHTML(a.seasonYear||"Año desconocido")} · ${escapeHTML(a.status||"")}</div>
+   <div class="genres">${(a.genres||[]).map(g=>`<span>${escapeHTML(g)}</span>`).join("")}</div>
+   <p class="desc">${escapeHTML(plain(a.description||"Sin sinopsis disponible.")).replace(/\\n/g,"<br>")}</p>
+   <div class="meta">Formato: ${escapeHTML(a.format||"N/D")} · Episodios listados: ${escapeHTML(a.episodes??"Por confirmar")} · Puntuación: ${escapeHTML(a.averageScore??"N/D")}/100</div>
+   <div class="actions"><button class="btn" id="favBtn">${fav?"♥ Quitar de mi lista":"♡ Añadir a mi lista"}</button><a class="btn secondary" href="${escapeHTML(a.siteUrl||"https://anilist.co")}" target="_blank" rel="noopener">Ficha en AniList</a><a class="btn secondary" href="https://www.google.com/search?q=${encodeURIComponent(titleOf(a)+" ver anime plataforma oficial")}" target="_blank" rel="noopener">Buscar plataforma oficial</a></div>
+   <div class="notice">Solo información: esta ficha procede del catálogo de anime. No se ha confirmado que haya episodios disponibles en una fuente conectada.</div>
+   ${rel.length?`<h3>Relacionados</h3><div class="actions">${rel.map(x=>`<button class="btn secondary relBtn" data-id="${x.node.id}">${escapeHTML(x.node.title?.english||x.node.title?.romaji||"Relacionado")}</button>`).join("")}</div>`:""}
+   </div></div>`;
+  $("#backBtn").onclick=()=>{ $("#detailSection").classList.add("hidden");$("#homeView").classList.remove("hidden"); };
+  $("#favBtn").onclick=()=>{favorites=fav?favorites.filter(x=>x!==a.id):[...new Set([...favorites,a.id])];localStorage.setItem(favKey,JSON.stringify(favorites));openDetail(a.id)};
+  document.querySelectorAll(".relBtn").forEach(b=>b.onclick=()=>openDetail(b.dataset.id));
+ }catch(e){$("#detailSection").innerHTML=`<div class="empty">${escapeHTML(e.message)} <button class="btn secondary" onclick="location.reload()">Reintentar</button></div>`}
+}
+$("#searchForm").addEventListener("submit",async e=>{
+ e.preventDefault();const q=$("#searchInput").value.trim();if(!q)return;
+ $("#homeView").classList.add("hidden");$("#detailSection").classList.add("hidden");$("#resultsView").classList.remove("hidden");
+ document.querySelectorAll(".tabs button").forEach(b=>b.classList.toggle("active",b.dataset.view==="explore"));
+ $("#resultsTitle").textContent=`Resultados para “${q}”`;$("#resultsCount").textContent="Buscando…";$("#results").innerHTML='<div class="loading">Buscando anime…</div>';
+ try{const d=await api(`/api/search?q=${encodeURIComponent(q)}`);$("#resultsCount").textContent=`${d.results.length} resultados`;renderCards("#results",d.results)}
+ catch(err){$("#results").innerHTML=`<div class="empty">${escapeHTML(err.message)}</div>`}
+});
+document.querySelectorAll(".tabs button").forEach(b=>b.addEventListener("click",()=>setView(b.dataset.view)));
+init();
+</script>
+</body>
+</html>
